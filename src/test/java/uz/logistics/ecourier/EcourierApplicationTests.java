@@ -8,6 +8,7 @@ class EcourierApplicationTests {
 
     @Test
     void contextLoads() {
+        //emptybody
     }
 
 }

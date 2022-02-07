@@ -35,13 +35,13 @@ public class Auditable {
     private Long updatedTime;
 
     @PrePersist
-    public void createdTime(){
+    public void setCreatedTime() { // skipcq: JAVA-E1014
         this.createdTime = System.currentTimeMillis();
         this.updatedTime = System.currentTimeMillis();
     }
 
     @PreUpdate
-    public void updatedTime(){
+    public void setUpdatedTime(){ // skipcq: JAVA-E1014
         this.updatedTime = System.currentTimeMillis();
     }
 }
