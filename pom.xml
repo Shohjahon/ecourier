@@ -18,6 +18,8 @@
         <java.version>11</java.version>
         <jackson-databind.version>2.13.1</jackson-databind.version>
         <jackson-dataformat-yaml.version>2.13.1</jackson-dataformat-yaml.version>
+        <sonar.organization>shohjahon1995</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
