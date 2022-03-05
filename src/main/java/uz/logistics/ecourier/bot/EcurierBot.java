@@ -1,41 +1,32 @@
 package uz.logistics.ecourier.bot;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import uz.logistics.ecourier.handler.DispatchHandler;
 import uz.logistics.ecourier.service.PropertyService;
+
+import java.util.concurrent.Executor;
 
 @Component
 public class EcurierBot extends TelegramLongPollingBot {
-    private final Logger logger = LoggerFactory.getLogger(EcurierBot.class);
-
     private final PropertyService propertyService;
+    private final DispatchHandler dispatchHandler;
+    private final Executor executor;
 
-    public EcurierBot(PropertyService propertyService) {
+
+    public EcurierBot(PropertyService propertyService,
+                      DispatchHandler dispatchHandler,
+                      @Qualifier("handlerExecutor") Executor executor) {
         this.propertyService = propertyService;
+        this.dispatchHandler = dispatchHandler;
+        this.executor = executor;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage() && update.getMessage().hasText()){
-            try {
-                String messageContent = update.getMessage().getText();
-                Long chatId = update.getMessage().getChatId();
-                SendMessage message = SendMessage.builder()
-                        .chatId(chatId.toString())
-                        .text(messageContent)
-                        .build();
-
-                execute(message);
-            } catch (TelegramApiException e) {
-                logger.error("EcourierBot.onUpdateReceived: {}", e.getMessage());
-            }
-        }
+        dispatchHandler.dispatch(update);
     }
 
     @Override
