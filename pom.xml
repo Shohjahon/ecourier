@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>uz.logistics</groupId>
     <artifactId>ecourier</artifactId>
@@ -18,8 +18,21 @@
         <java.version>11</java.version>
         <jackson-databind.version>2.13.1</jackson-databind.version>
         <jackson-dataformat-yaml.version>2.13.1</jackson-dataformat-yaml.version>
+        <spock.version>2.1-groovy-3.0</spock.version>
+        <random.beans.version>3.9.0</random.beans.version>
         <sonar.organization>shohjahon1995</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.exclusions>
+            **/uz/logistics/ecourier/EcourierApplication.java,
+            **/uz/logistics/ecourier/audit/**/*,
+            **/uz/logistics/ecourier/bot/**/*,
+            **/uz/logistics/ecourier/common/**/*,
+            **/uz/logistics/ecourier/config/**/*,
+            **/uz/logistics/ecourier/constant/**/*,
+            **/uz/logistics/ecourier/entity/**/*,
+            **/uz/logistics/ecourier/handler/**/*,
+            **/uz/logistics/ecourier/repository/**/*
+        </sonar.exclusions>
     </properties>
 
     <dependencies>
@@ -114,9 +127,35 @@
         </dependency>
 
         <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <version>${spock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.benas</groupId>
+            <artifactId>random-beans</artifactId>
+            <version>${random.beans.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -131,6 +170,57 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>COMPLEXITY</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>60%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/uz/logistics/ecourier/EcourierApplication.class</exclude>
+                        <exclude>**/uz/logistics/ecourier/audit/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/bot/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/config/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/constant/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/entity/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/repository/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
