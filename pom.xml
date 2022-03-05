@@ -33,6 +33,7 @@
             **/uz/logistics/ecourier/handler/**/*,
             **/uz/logistics/ecourier/repository/**/*
         </sonar.exclusions>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
