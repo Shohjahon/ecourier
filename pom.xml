@@ -10,6 +10,7 @@
     </parent>
     <groupId>uz.logistics</groupId>
     <artifactId>ecourier</artifactId>
+    <packaging>jar</packaging>
     <version>1.0.0</version>
     <name>ecourier</name>
     <description>ecourier</description>
@@ -33,6 +34,7 @@
             **/uz/logistics/ecourier/handler/**/*,
             **/uz/logistics/ecourier/repository/**/*
         </sonar.exclusions>
+        <sonar.tests>src/test/groovy</sonar.tests>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
