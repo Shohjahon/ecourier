@@ -1,6 +1,7 @@
 package uz.logistics.ecourier.service;
 
 import org.springframework.stereotype.Service;
+import uz.logistics.ecourier.common.Generated;
 import uz.logistics.ecourier.entity.Property;
 import uz.logistics.ecourier.repository.PropertyRepository;
 
@@ -18,6 +19,7 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
+    @Generated
     @PostConstruct
     public void init(){
         if (propertyRepository.findAll().isEmpty()){
@@ -41,10 +43,12 @@ public class PropertyService {
                 .orElse("");
     }
 
+    @Generated
     public String getBotUsername(){
         return getValue(BOT_USERNAME);
     }
 
+    @Generated
     public String getBotToken(){
         return getValue(BOT_TOKEN);
     }
