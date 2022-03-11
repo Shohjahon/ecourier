@@ -33,4 +33,5 @@ public class Message extends Auditable {
 
     @Column(name = "message")
     private String message;
+
 }
