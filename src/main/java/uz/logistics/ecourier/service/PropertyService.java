@@ -5,10 +5,8 @@ import uz.logistics.ecourier.common.Generated;
 import uz.logistics.ecourier.entity.Property;
 import uz.logistics.ecourier.repository.PropertyRepository;
 
-import javax.annotation.PostConstruct;
-import java.util.List;
-
-import static uz.logistics.ecourier.constant.PropertyKeys.*;
+import static uz.logistics.ecourier.constant.PropertyKeys.BOT_TOKEN;
+import static uz.logistics.ecourier.constant.PropertyKeys.BOT_USERNAME;
 
 @Service
 public class PropertyService {

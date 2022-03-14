@@ -2,8 +2,8 @@ package uz.logistics.ecourier.common;
 
 @Generated
 public class ThreadLocalSingleton {
-    private final static ThreadLocalSingleton INSTANCE = new ThreadLocalSingleton();
-    private final static ThreadLocal<String> MESSAGE = ThreadLocal.withInitial(String::new);
+    private static final ThreadLocalSingleton INSTANCE = new ThreadLocalSingleton();
+    private static final ThreadLocal<String> MESSAGE = ThreadLocal.withInitial(String::new);
 
     private ThreadLocalSingleton(){
 
