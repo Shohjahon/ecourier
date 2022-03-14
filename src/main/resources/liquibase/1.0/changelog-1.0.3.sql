@@ -1,0 +1,3 @@
+insert into public.properties(key, value, created_by, last_modified_by, created_time, updated_time) values ('ecourier.telegram.bot.token', '5149911753:AAEQmmBSCjTZG_jL0LWDL0hcYz297CTC8To', 1, 1, now(), now());
+insert into public.properties(key, value, created_by, last_modified_by, created_time, updated_time) values ('ecourier.telegram.bot.username', 'ecourieruzbot', 1, 1, now(), now());
+insert into public.properties(key, value, created_by, last_modified_by, created_time, updated_time) values ('ecourier.telegram.monitoring.chat.id', '-674641278', 1, 1, now(), now());

@@ -16,12 +16,8 @@ import static uz.logistics.ecourier.constant.TableNames.TB_MESSAGE;
 @AllArgsConstructor
 @Table(name = TB_MESSAGE)
 public class Message extends Auditable {
-    @Transient
-    private static final String MESSAGE_SEQUENCE_NAME = "message_id_seq";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = MESSAGE_SEQUENCE_NAME)
-    @SequenceGenerator(name = MESSAGE_SEQUENCE_NAME, sequenceName = MESSAGE_SEQUENCE_NAME)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "lang")

@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import uz.logistics.ecourier.bot.EcurierBot;
+import uz.logistics.ecourier.common.Generated;
 
 @Component
 public class DispatchHandler {
@@ -20,7 +21,8 @@ public class DispatchHandler {
         this.ecurierBot = ecurierBot;
     }
 
-    @Async("handlerExecutor")
+    @Generated
+    @Async(value = "handlerExecutor")
     public void dispatch(Update update){
         if (update.hasMessage() && update.getMessage().hasText()){
             try {
@@ -30,7 +32,6 @@ public class DispatchHandler {
                         .chatId(chatId.toString())
                         .text(messageContent)
                         .build();
-
                 ecurierBot.execute(message);
             } catch (TelegramApiException e) {
                 logger.error("DispatchHandler.dispatch: {}", e.getMessage());

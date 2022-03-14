@@ -31,5 +31,6 @@ class PropertyServiceSpec extends BaseSpecification {
         2244    | "ecourier.project.name"   | "e-courier"
         3654    | "ecourier.start.date"     | "11.03.2022"
         4760    | "ecourier.bot.username"   | "@ecourierbot"
+        2000    | null                      | ""
     }
 }

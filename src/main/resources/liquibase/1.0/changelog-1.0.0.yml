@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create properties table
+      author: Rahmataliev Shohjahon
+      changes:
+        - createTable:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: id of the property record
+              - column:
+                  name: key
+                  type: varchar(128)
+                  constraints:
+                    unique: true
+                  remarks: key of the corresponding value
+              - column:
+                  name: value
+                  type: text
+                  remarks: value of the particular property
+              - column:
+                  name: created_by
+                  type: bigint
+                  defaultValue: 1
+                  remarks: user who created current record
+              - column:
+                  name: last_modified_by
+                  type: bigint
+                  defaultValue: 1
+                  remarks: user who modified the record lastly
+              - column:
+                  name: created_time
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+                    updatable: false
+                  remarks: created date and time of the property
+              - column:
+                  name: updated_time
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: updated date and time of the property
+
+            remarks: Table for storing sensitive data such as token, system properties and etc
+
