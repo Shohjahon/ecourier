@@ -1,16 +1,23 @@
 package uz.logistics.ecourier.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import uz.logistics.ecourier.exception.CustomAsyncExceptionHandler;
 
 import java.util.concurrent.Executor;
 
 @Configuration
-public class AsyncConfig {
+public class AsyncConfig implements AsyncConfigurer {
+    private final CustomAsyncExceptionHandler asyncExceptionHandler;
 
-    @Bean(name = "handlerExecutor")
-    public Executor executor(){
+    public AsyncConfig(CustomAsyncExceptionHandler asyncExceptionHandler) {
+        this.asyncExceptionHandler = asyncExceptionHandler;
+    }
+
+    @Override
+    public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(100);
         executor.setMaxPoolSize(1000);
@@ -20,5 +27,10 @@ public class AsyncConfig {
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.initialize();
         return executor;
+    }
+
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return asyncExceptionHandler;
     }
 }
