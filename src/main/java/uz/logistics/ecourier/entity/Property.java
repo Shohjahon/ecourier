@@ -15,12 +15,8 @@ import static uz.logistics.ecourier.constant.TableNames.TB_PROPERTY;
 @AllArgsConstructor
 @Table(name = TB_PROPERTY)
 public class Property extends Auditable {
-    @Transient
-    private static final String PROP_SEQUENCE_NAME = "property_id_seq";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = PROP_SEQUENCE_NAME)
-    @SequenceGenerator(name = PROP_SEQUENCE_NAME, sequenceName = PROP_SEQUENCE_NAME)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "key", nullable = false, unique = true)

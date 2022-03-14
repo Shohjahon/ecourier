@@ -21,17 +21,16 @@
         <jackson-dataformat-yaml.version>2.13.1</jackson-dataformat-yaml.version>
         <spock.version>2.1-groovy-3.0</spock.version>
         <random.beans.version>3.9.0</random.beans.version>
+        <jacoco.version>0.8.5</jacoco.version>
         <sonar.organization>shohjahon1995</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.exclusions>
             **/uz/logistics/ecourier/EcourierApplication.java,
             **/uz/logistics/ecourier/audit/**/*,
             **/uz/logistics/ecourier/bot/**/*,
-            **/uz/logistics/ecourier/common/**/*,
             **/uz/logistics/ecourier/config/**/*,
             **/uz/logistics/ecourier/constant/**/*,
             **/uz/logistics/ecourier/entity/**/*,
-            **/uz/logistics/ecourier/handler/**/*,
             **/uz/logistics/ecourier/repository/**/*,
         </sonar.exclusions>
         <sonar.tests>src/test/groovy</sonar.tests>
@@ -49,6 +48,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.8.0</version>
         </dependency>
 
         <dependency>
@@ -177,7 +182,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -202,8 +207,6 @@
                         <exclude>**/uz/logistics/ecourier/constant/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/entity/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/repository/**/*</exclude>
-                        <exclude>**/uz/logistics/ecourier/common/**/*</exclude>
-                        <exclude>**/uz/logistics/ecourier/handler/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
