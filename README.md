@@ -1,7 +1,7 @@
 # E-Courier
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe9dc717e93b428fb17029db6b808df7)](https://app.codacy.com/gh/Shohjahon/ecourier?utm_source=github.com&utm_medium=referral&utm_content=Shohjahon/ecourier&utm_campaign=Badge_Grade_Settings) 
-[![DeepSource](https://deepsource.io/gh/Shohjahon/ecourier.svg/?label=active+issues&show_trend=true&token=_wq9xOYrHF11M0MnqqWjKWVp)](https://deepsource.io/gh/Shohjahon/ecourier/?ref=repository-badge) [![CI with Maven](https://github.com/Shohjahon/ecourier/actions/workflows/maven.yml/badge.svg?branch=development)](https://github.com/Shohjahon/ecourier/actions/workflows/actions.yml)
+[![DeepSource](https://deepsource.io/gh/Shohjahon/ecourier.svg/?label=active+issues&show_trend=true&token=_wq9xOYrHF11M0MnqqWjKWVp)](https://deepsource.io/gh/Shohjahon/ecourier/?ref=repository-badge)
 
 
 Telegram bot for automating delivery and logistics operations
