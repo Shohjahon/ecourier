@@ -5,9 +5,9 @@ import uz.logistics.ecourier.common.Generated;
 import uz.logistics.ecourier.entity.Property;
 import uz.logistics.ecourier.repository.PropertyRepository;
 
-import static uz.logistics.ecourier.constant.PropertyKeys.BOT_TOKEN;
-import static uz.logistics.ecourier.constant.PropertyKeys.BOT_USERNAME;
+import static uz.logistics.ecourier.constant.PropertyKeys.*;
 
+@Generated
 @Service
 public class PropertyService {
     private final PropertyRepository propertyRepository;
@@ -22,13 +22,23 @@ public class PropertyService {
                 .orElse("");
     }
 
-    @Generated
     public String getBotUsername(){
         return getValue(BOT_USERNAME);
     }
 
-    @Generated
     public String getBotToken(){
         return getValue(BOT_TOKEN);
+    }
+
+    public String getMonitoringBotUsername(){
+        return getValue(MONITORING_BOT_USERNAME);
+    }
+
+    public String getMonitoringBotToken(){
+        return getValue(MONITORING_BOT_TOKEN);
+    }
+
+    public String getMonitoringChatId(){
+        return getValue(MONITORING_CHAT_ID);
     }
 }

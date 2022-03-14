@@ -22,7 +22,7 @@ public class DispatchHandler {
     }
 
     @Generated
-    @Async(value = "handlerExecutor")
+    @Async
     public void dispatch(Update update){
         if (update.hasMessage() && update.getMessage().hasText()){
             try {
