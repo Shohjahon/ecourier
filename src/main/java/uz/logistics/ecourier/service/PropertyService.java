@@ -8,8 +8,7 @@ import uz.logistics.ecourier.repository.PropertyRepository;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-import static uz.logistics.ecourier.constant.PropertyKeys.BOT_TOKEN;
-import static uz.logistics.ecourier.constant.PropertyKeys.BOT_USERNAME;
+import static uz.logistics.ecourier.constant.PropertyKeys.*;
 
 @Service
 public class PropertyService {
@@ -17,24 +16,6 @@ public class PropertyService {
 
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
-    }
-
-    @Generated
-    @PostConstruct
-    public void init(){
-        if (propertyRepository.findAll().isEmpty()){
-            propertyRepository.saveAll(List.of(
-                    Property
-                            .builder()
-                            .key(BOT_TOKEN)
-                            .value("5149911753:AAEQmmBSCjTZG_jL0LWDL0hcYz297CTC8To")
-                            .build(),
-                    Property
-                            .builder()
-                            .key(BOT_USERNAME)
-                            .value("ecourieruzbot")
-                            .build()));
-        }
     }
 
     public String getValue(final String key){

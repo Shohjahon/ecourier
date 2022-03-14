@@ -15,18 +15,13 @@ import static uz.logistics.ecourier.constant.TableNames.TB_USER;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = TB_USER, indexes = {@Index(name = CHAT_ID_INDEX, columnList = "chat_id", unique = true)},
-       uniqueConstraints = {@UniqueConstraint(columnNames = {"chat_id", "phone_number"})})
+@Table(name = TB_USER, uniqueConstraints = {@UniqueConstraint(columnNames = {"chat_id", "phone_number"})})
 public class User extends Auditable {
-    @Transient
-    private static final String USER_SEQUENCE_NAME = "user_id_seq";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_SEQUENCE_NAME)
-    @SequenceGenerator(name = USER_SEQUENCE_NAME, sequenceName = USER_SEQUENCE_NAME)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @Column(name = "lang")

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create messages table
+      author: Rahmataliev Shohjahon
+      changes:
+        - createTable:
+            tableName: messages
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: id of the message record
+              - column:
+                  name: lang
+                  type: varchar(8)
+                  remarks: language of the message
+              - column:
+                  name: key
+                  type: varchar(128)
+                  remarks: key of the respective message
+              - column:
+                  name: message
+                  type: text
+                  remarks: message content
+
+            remarks: Table for storing internationalized messages

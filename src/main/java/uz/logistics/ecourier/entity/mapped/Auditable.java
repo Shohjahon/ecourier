@@ -3,12 +3,15 @@ package uz.logistics.ecourier.entity.mapped;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -28,20 +31,12 @@ public class Auditable {
     @Column(name = "last_modified_by", columnDefinition = "bigint default 1")
     protected Long lastModifiedBy;
 
-    @Column(name = "created_time", updatable = false)
-    private Long createdTime;
+    @CreationTimestamp
+    @Column(name = "created_time")
+    private LocalDateTime createdTime;
 
-    @Column(name = "updatedTime")
-    private Long updatedTime;
+    @UpdateTimestamp
+    @Column(name = "updated_time")
+    private LocalDateTime updatedTime;
 
-    @PrePersist
-    public void setCreatedTime() { // skipcq: JAVA-E1014
-        this.createdTime = System.currentTimeMillis();
-        this.updatedTime = System.currentTimeMillis();
-    }
-
-    @PreUpdate
-    public void setUpdatedTime(){ // skipcq: JAVA-E1014
-        this.updatedTime = System.currentTimeMillis();
-    }
 }
