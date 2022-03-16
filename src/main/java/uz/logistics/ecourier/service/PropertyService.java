@@ -5,7 +5,11 @@ import uz.logistics.ecourier.common.Generated;
 import uz.logistics.ecourier.entity.Property;
 import uz.logistics.ecourier.repository.PropertyRepository;
 
-import static uz.logistics.ecourier.constant.PropertyKeys.*;
+import static uz.logistics.ecourier.constant.PropertyKeys.BOT_TOKEN;
+import static uz.logistics.ecourier.constant.PropertyKeys.BOT_USERNAME;
+import static uz.logistics.ecourier.constant.PropertyKeys.MONITORING_BOT_TOKEN;
+import static uz.logistics.ecourier.constant.PropertyKeys.MONITORING_BOT_USERNAME;
+import static uz.logistics.ecourier.constant.PropertyKeys.MONITORING_CHAT_ID;
 
 @Generated
 @Service
