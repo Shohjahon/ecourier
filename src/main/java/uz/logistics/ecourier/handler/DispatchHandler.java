@@ -13,6 +13,7 @@ import uz.logistics.ecourier.common.Generated;
 
 @Generated
 @Component
+@Generated
 public class DispatchHandler {
     private static final Logger logger = LoggerFactory.getLogger(DispatchHandler.class);
 
