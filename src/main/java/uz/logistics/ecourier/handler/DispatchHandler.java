@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import uz.logistics.ecourier.bot.EcurierBot;
 import uz.logistics.ecourier.common.Generated;
 
+@Generated
 @Component
 public class DispatchHandler {
     private static final Logger logger = LoggerFactory.getLogger(DispatchHandler.class);
@@ -21,7 +22,6 @@ public class DispatchHandler {
         this.ecurierBot = ecurierBot;
     }
 
-    @Generated
     @Async
     public void dispatch(Update update){
         if (update.hasMessage() && update.getMessage().hasText()){
