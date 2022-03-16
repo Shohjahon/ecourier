@@ -12,7 +12,6 @@ import uz.logistics.ecourier.bot.EcurierBot;
 import uz.logistics.ecourier.common.Generated;
 
 @Component
-@Generated
 public class DispatchHandler {
     private static final Logger logger = LoggerFactory.getLogger(DispatchHandler.class);
 
@@ -22,6 +21,7 @@ public class DispatchHandler {
         this.ecurierBot = ecurierBot;
     }
 
+    @Generated
     @Async
     public void dispatch(Update update){
         if (update.hasMessage() && update.getMessage().hasText()){
