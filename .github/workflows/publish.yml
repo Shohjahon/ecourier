@@ -1,4 +1,4 @@
-name: Publish to Github Packages
+name: Publish to Github Packages and Docker Hub
 
 on:
   push:
@@ -27,7 +27,17 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Publish docker image to Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: shoh1995222/ecourier
+        tags: latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASS }}
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+
