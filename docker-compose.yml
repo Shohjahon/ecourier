@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  API:
+    image: 'ecourier-1.0.0.jar'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - PostgreSQL
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/ecourier
+      - SPRING_DATASOURCE_USERNAME=ecourier
+      - SPRING_DATASOURCE_PASSWORD=shohjahon599122
+
+  PostgreSQL:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=shohjahon599122
+      - POSTGRES_USER=ecourier
+      - POSTGRES_DB=ecourier
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecourier"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
