@@ -30,21 +30,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Shohjahon_ecourier
-      - name: Build with Maven
-        run: mvn clean install -DskipTests=true
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: Set up docker buildx
-        uses: docker/setup-buildx-action@v1
+
+  docker:
+    name: Publish to the Docker Hub
+    runs-on: ubuntu-latest
+    needs: [build]
+    env:
+      REPO: ${{ secrets.DOCKER_REPO_ECOURIER }}
+    steps:
+      - uses: actions/checkout@v1
       - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build docker image and push it to the Docker Hub
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{ github.repository }}:${{ steps.vars.outputs.tag }}
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_PASS }}
+      - name: Build docker image
+        run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+      - name: Publish docker image
+        run: docker push $REPO
