@@ -1,2 +1,0 @@
-insert into public.properties(key, value, created_by, last_modified_by, created_time, updated_time) values ('ecourier.monitoring.bot.username', 'ecourier_monitoring_bot', 1, 1, now(), now());
-insert into public.properties(key, value, created_by, last_modified_by, created_time, updated_time) values ('ecourier.monitoring.bot.token', '5289483052:AAFG367YYkYQYJTY9LIp5fOHiYUpkKVPJsI', 1, 1, now(), now());

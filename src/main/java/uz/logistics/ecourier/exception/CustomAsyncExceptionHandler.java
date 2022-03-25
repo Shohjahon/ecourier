@@ -21,17 +21,14 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
 
     private final MonitoringBot monitoringBot;
     private final ObjectMapper objectMapper;
-    private final PropertyService propertyService;
 
     @Value("${spring.profiles.active}")
     private String activeProfile;
 
     public CustomAsyncExceptionHandler(MonitoringBot monitoringBot,
-                                       ObjectMapper objectMapper,
-                                       PropertyService propertyService) {
+                                       ObjectMapper objectMapper) {
         this.monitoringBot = monitoringBot;
         this.objectMapper = objectMapper;
-        this.propertyService = propertyService;
     }
 
     @Override
@@ -40,24 +37,19 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
         var methodName = method.getName();
 
         StringBuilder content = new StringBuilder();
-        content.append("<bold>E-Courier: Async error details</bold>");
-        content.append(String.format("profile: %s", activeProfile));
-        content.append(String.format("method: %s", methodName));
-        content.append(String.format("stacktrace: %s", exception));
-
-        var message = new SendMessage();
-        message.enableHtml(true);
-        message.setChatId(propertyService.getMonitoringChatId());
+        content.append("E-Courier: Async error details\n");
+        content.append(String.format("* profile: * %s", activeProfile));
+        content.append(String.format("* method: * %s", methodName));
+        content.append(String.format("* stacktrace: * ``` %s ```", exception));
 
         try {
             StringWriter sw = new StringWriter();
             objectMapper.writeValue(sw, params);
             var parameters = sw.toString();
-            content.append(String.format("parameters: %s", parameters));
-            message.setText(content.toString());
-            monitoringBot.execute(message);
+            content.append(String.format("* parameters: * ``` %s ```", parameters));
+            monitoringBot.sendAnalyticMessage(content.toString());
         } catch (Exception e) {
-            logger.error("CustomAsyncExceptionHandler.handleUncaughtException: failed", e);
+            logger.error("CustomAsyncExceptionHandler.handleUncaughtException: ", e);
         }
     }
 }
