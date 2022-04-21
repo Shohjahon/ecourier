@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import liquibase.repackaged.org.apache.commons.collections4.map.HashedMap;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.CodeSignature;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -31,7 +30,7 @@ public class LoggingAspect {
 
     @Pointcut("@annotation(uz.logistics.ecourier.aop.Logging)")
     public void pointcut(){
-
+        // body of the was left empty, because it does not have functionality other thank marking
     }
 
     @Around("pointcut()")

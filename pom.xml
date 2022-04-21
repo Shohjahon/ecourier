@@ -32,7 +32,8 @@
             **/uz/logistics/ecourier/constant/**/*,
             **/uz/logistics/ecourier/entity/**/*,
             **/uz/logistics/ecourier/repository/**/*,
-            **/uz/logistics/ecourier/exception/**/*
+            **/uz/logistics/ecourier/exception/**/*,
+            **/uz/logistics/ecourier/aop/**/*
         </sonar.exclusions>
         <sonar.tests>src/test/groovy</sonar.tests>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -222,6 +223,7 @@
                         <exclude>**/uz/logistics/ecourier/entity/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/repository/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/exception/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/aop/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

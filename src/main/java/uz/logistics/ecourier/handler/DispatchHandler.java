@@ -38,7 +38,6 @@ public class DispatchHandler {
             } catch (TelegramApiException e) {
                 logger.error("DispatchHandler.dispatch: {}", e.getMessage());
             }
-            throw new RuntimeException("Internal error!");
         }
     }
 }
