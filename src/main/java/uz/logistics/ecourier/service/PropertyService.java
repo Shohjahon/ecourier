@@ -1,6 +1,7 @@
 package uz.logistics.ecourier.service;
 
 import org.springframework.stereotype.Service;
+import uz.logistics.ecourier.aop.Logging;
 import uz.logistics.ecourier.common.Generated;
 import uz.logistics.ecourier.entity.Property;
 import uz.logistics.ecourier.repository.PropertyRepository;
@@ -20,6 +21,7 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
+    @Logging
     public String getValue(final String key){
         return propertyRepository.findByKey(key)
                 .map(Property::getValue)

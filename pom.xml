@@ -32,7 +32,8 @@
             **/uz/logistics/ecourier/constant/**/*,
             **/uz/logistics/ecourier/entity/**/*,
             **/uz/logistics/ecourier/repository/**/*,
-            **/uz/logistics/ecourier/exception/**/*
+            **/uz/logistics/ecourier/exception/**/*,
+            **/uz/logistics/ecourier/aop/**/*
         </sonar.exclusions>
         <sonar.tests>src/test/groovy</sonar.tests>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -49,6 +50,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>
@@ -217,6 +223,7 @@
                         <exclude>**/uz/logistics/ecourier/entity/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/repository/**/*</exclude>
                         <exclude>**/uz/logistics/ecourier/exception/**/*</exclude>
+                        <exclude>**/uz/logistics/ecourier/aop/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

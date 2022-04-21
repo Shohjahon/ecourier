@@ -1,6 +1,7 @@
 package uz.logistics.ecourier.service;
 
 import org.springframework.stereotype.Service;
+import uz.logistics.ecourier.aop.Logging;
 import uz.logistics.ecourier.constant.enums.Lang;
 import uz.logistics.ecourier.entity.Message;
 import uz.logistics.ecourier.repository.MessageRepository;
@@ -15,18 +16,21 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
+    @Logging
     public String getMessage(Lang lang, String key){
         return messageRepository.findByKeyAndLang(key, lang)
                 .map(Message::getMessage)
                 .orElse(key);
     }
 
+    @Logging
     public String getKeyByMessage(String message){
         return messageRepository.findByMessage(message)
                 .map(Message::getKey)
                 .orElse(message);
     }
 
+    @Logging
     public Optional<Lang> getLangByMessage(String message){
         return messageRepository.findByMessage(message)
                 .map(Message::getLang);

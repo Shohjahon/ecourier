@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import uz.logistics.ecourier.aop.Logging;
 import uz.logistics.ecourier.bot.EcurierBot;
 import uz.logistics.ecourier.common.Generated;
 
@@ -23,6 +24,7 @@ public class DispatchHandler {
     }
 
     @Async
+    @Logging
     public void dispatch(Update update){
         if (update.hasMessage() && update.getMessage().hasText()){
             try {
