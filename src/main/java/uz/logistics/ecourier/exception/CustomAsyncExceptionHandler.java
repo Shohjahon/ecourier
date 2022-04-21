@@ -40,20 +40,19 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
         var methodName = method.getName();
 
         StringBuilder content = new StringBuilder();
-        content.append("<bold>E-Courier: Async error details</bold>");
-        content.append(String.format("profile: %s", activeProfile));
-        content.append(String.format("method: %s", methodName));
-        content.append(String.format("stacktrace: %s", exception));
-
-        var message = new SendMessage();
-        message.enableHtml(true);
-        message.setChatId(propertyService.getMonitoringChatId());
+        content.append("* E-Courier: Async error details * \n");
+        content.append(String.format("* profile: *  %s \n", activeProfile));
+        content.append(String.format("* method: * %s \n", methodName));
 
         try {
+            var message = new SendMessage();
+            message.enableMarkdown(true);
+            message.setChatId(propertyService.getMonitoringChatId());
             StringWriter sw = new StringWriter();
             objectMapper.writeValue(sw, params);
             var parameters = sw.toString();
-            content.append(String.format("parameters: %s", parameters));
+            content.append(String.format("* parameters: * ``` %s ```\n", parameters));
+            content.append(String.format("* stacktrace: * ``` %s ```\n", exception));
             message.setText(content.toString());
             monitoringBot.execute(message);
         } catch (Exception e) {
