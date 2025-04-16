@@ -18,7 +18,7 @@
     <properties>
         <java.version>11</java.version>
         <jackson-databind.version>2.13.2</jackson-databind.version>
-        <jackson-dataformat-yaml.version>2.13.1</jackson-dataformat-yaml.version>
+        <jackson-dataformat-yaml.version>2.18.3</jackson-dataformat-yaml.version>
         <spock.version>2.1-groovy-3.0</spock.version>
         <random.beans.version>3.9.0</random.beans.version>
         <jacoco.version>0.8.5</jacoco.version>
